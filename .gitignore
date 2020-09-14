@@ -1,0 +1,17 @@
+*.iml
+build/
+.gradle/
+out/
+run/
+src/api/
+src/test/
+.idea/
+gradle/
+gradlew
+.DS_Store
+.theia
+.vscode
+bin
+.classpath
+.project
+org.eclipse.*

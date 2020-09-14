@@ -1,0 +1,6 @@
+{
+  "name": "DiscordRP",
+  "version": "1.0",
+  "mainClass": "com.hyperiumjailbreak.DiscordRPAddon",
+  "desc": "Discord Rich Presence"
+}

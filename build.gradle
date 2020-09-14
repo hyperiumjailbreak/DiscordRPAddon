@@ -1,0 +1,55 @@
+group 'hjb.ext'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        maven {
+            url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/forge-proxy/"
+        }
+        maven {
+            url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/gradle-plugin-proxy/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.tweaker-client'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+minecraft {
+    version "1.8.9"
+    tweakClass "cc.hyperium.launch.HyperiumTweaker"
+    mappings "stable_20"
+    runDir "run"
+    makeObfSourceJar false
+}
+
+repositories {
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
+configurations {
+    embed
+    compile.extendsFrom embed
+}
+
+dependencies {
+    compile "com.github.hyperiumjailbreak:client:master-SNAPSHOT"
+    embed "com.github.jagrosh:DiscordIPC:e29d6d8"
+}
+
+jar {
+    dependsOn configurations.compile
+    from {
+        configurations.embed.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
